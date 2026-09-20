@@ -28,18 +28,12 @@
 
 name: EthicalCheck-Workflow
 
+# Disabled until this repository exposes and configures its own OpenAPI definition.
+if: ${{ false }}
+
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  # Customize trigger events based on your DevSecOps processes.
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  schedule:
-    - cron: '31 22 * * 0'
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Run manually after configuring a project-owned OpenAPI specification.
   workflow_dispatch:
 
 permissions:

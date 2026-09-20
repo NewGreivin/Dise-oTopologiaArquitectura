@@ -30,13 +30,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build
-        uses: docker://node:22-alpine
+        uses: actions/setup-node@v4
         with:
-          args: sh -c "npm install && npm run build:lib && npm run build:app"
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build application
+        run: npm run build
         env:
           # do not report warnings as errors
           CI: false
-          PUBLIC_URL: https://stan-smith.github.io/FossFLOW/
+          PUBLIC_URL: /${{ github.event.repository.name }}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
